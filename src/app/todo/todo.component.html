@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-12  head-bg">
+    <p class="head-pos head-text">ToDo-App</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div class="todo-head">
+      <form>
+        <div class="inputs-wrapper">
+          <input type="text" class="form-control inputs" formControlName="search" placeholder="Search task">
+          <!-- <i class="fa-solid fa-magnifying-glass inputs-icon" style="color:#757575"></i> -->
+          <!-- <i class="fa-solid fa-search inputs-icon " style="color:#757575"></i> -->
+          <i class="fa fa-search inputs-icon" style="color:#757575"></i>
+          <!-- <i class="fa-solid fa-user inputs-icon" ></i> -->
+          <i class="bi bi-search inputs-icon"></i>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-3"></div>
+</div>
+<div class="row mt-3">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form [formGroup]="todoNew">
+          <!-- <input type="text" class="form-control inputs" name="addTask" id="addTask" formcontrolName="addTask"> -->
+          <!-- <button type="button" (click)="addNew()" style="float: right;  background:linear-gradient(to right, #8b94ad, #cacfd8);color: #263238; " class="btn btn-outline-secondary"><i class="fa-solid fa-plus" style="color: white;" >&nbsp;</i>New Task</button> -->
+          <ng-template #content let-modal>
+            <div class="modal-header modal-head">
+              <h4 class="modal-title" id="modal-basic-title">New Task</h4>
+              <button type="button" class="btn btn-light" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                X</button>
+            </div>
+            <div class="modal-body">
+
+              <div class="mb-3">
+                <div class="input-group">
+                  <textarea id="task" class="form-control" placeholder="New task goes here.."
+                    formControlName="task"></textarea>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light btn-outline-secondary" (click)="modal.close('Save click')"
+                (click)="todoSubmit()">Save</button>
+            </div>
+          </ng-template>
+
+          <button class="btn btn-lg btn-outline-secondary text-white" (click)="open(content)"
+            style="float: right;  background:linear-gradient(to left, #8b94ad, #cacfd8);color: #263238; "
+            class="btn btn-outline-secondary" type="button"> <i class="fa fa-plus"></i> &nbsp; Add New Task</button>
+
+        </form>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+  </div>
+  <div class="col-2"></div>
+</div>
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div class="div-shadow " *ngFor="let td of todo.todoList;let i = index;">
+      <ul style="list-style-type: none;margin-top: 10px;">
+
+        <span class="listItem top-left">
+         
+          <div style="padding-top: 10px;"> <div>{{i}}</div>
+            <li><i class="fa fa-check"></i>{{td.task}}</li>
+          </div>
+          <div class="control-box pl-1">
+
+            <button class="btn btn-secondary"> <i class="bi bi-pencil-square " ></i> <span>Edit</span></button>
+            <button class="btn btn-danger"> <i class="bi bi-x-octagon-fill" (click)="del(i)"> <span>Delete</span></i></button>
+          
+          </div>
+
+        </span>
+      </ul>
+    </div>
+
+  </div>
+  <div class="col-3"></div>
+</div>
+
+
+
+<!-- <div class="div-shadow " *ngFor="let td of todo.todoList;let i = index;">
+  <li>{{td.task}}</li>
+</div> -->
